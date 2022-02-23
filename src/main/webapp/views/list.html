@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>List</title>
+    <link th:href="@{/assets/css/style.css}" href="../assets/css/style.css"  rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Products</h1>
+<div>
+    <form th:action="@{/search}" method="post">
+        <label>
+            <input type="text" name="keyword" placeholder="Nhập tên sản phẩm">
+            <button type="submit" >Tìm kiếm</button>
+        </label>
+    </form>
+</div>
+<h2 th:class="notify" th:if="${message} != null">
+    <span th:text="${message}"></span>
+</h2>
+<p>
+    <a th:href="@{/create}">Create New Product</a>
+</p>
+<div th:if="${message == null}">
+    <table id="products">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.description}"></td>
+            <td></td>
+            <td><a th:href="@{/edit/__${p.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete/__${p.id}__}"
+                   onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Delete</a></td>
+            <td><a th:href="@{/view/__${p.id}__}">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

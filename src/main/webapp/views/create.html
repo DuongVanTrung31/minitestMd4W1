@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create</title>
+    <link th:href="@{/assets/css/style.css}" href="../assets/css/style.css"  rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2 th:class="notify" th:if="${message} != null">
+    <span th:text="${message}"></span>
+</h2>
+<form id="form" th:action="@{/create}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <label hidden>Id:
+        <input type="text" th:field="*{id}">
+    </label>
+    <label>Name:
+        <input type="text" th:field="*{name}">
+    </label>
+    <label>Price:
+        <input type="text" th:field="*{price}">
+    </label>
+    <label>Description:
+        <input type="text" th:field="*{description}">
+    </label>
+<!--    <label>Image:-->
+<!--        <input type="file" name="image" th:field="*{image}">-->
+<!--    </label>-->
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<p><a th:href="@{/}">Back to list</a></p>
+</body>
+</html>
